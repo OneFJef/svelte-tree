@@ -1,6 +1,5 @@
 <script lang="ts">
   import { user } from "$lib/firebase";
-  import AnimatedRoute from "./AnimatedRoute.svelte";
 </script>
 
 {#if $user}
