@@ -49,6 +49,16 @@
     username = "";
     isAvailable = false;
   }
+
+  const usernameValidation =
+    /^(?=[a-zA-Z0-9._]{3,16}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+
+  $: isValid =
+    username?.length > 2 &&
+    username.length < 16 &&
+    usernameValidation.test(username);
+  $: isTouched = username.length > 0;
+  $: isTaken = isValid && !isAvailable && !loading;
 </script>
 
 <AuthCheck>
@@ -60,10 +70,29 @@
       class="input w-full"
       bind:value={username}
       on:input={checkAvailability}
+      class:input-error={!isValid && isTouched}
+      class:input-warning={isTaken}
+      class:input-success={isAvailable && isValid && !loading}
     />
 
-    <p>Is available? {isAvailable}</p>
+    <div class="my-4 min-h-16 px-8 w-full">
+      {#if loading}
+        <p class="text-secondary">Checking availability of @{username}</p>
+      {/if}
 
-    <button class="btn btn-success">Confirm username @{username} </button>
+      {#if !isValid && isTouched}
+        <p class="text-error text-sm">
+          Must be 3-16 characters long, alphanumeric only.
+        </p>
+      {/if}
+
+      {#if isValid && !isAvailable && !loading}
+        <p class="text-warning text-sm">@{username} is not available</p>
+      {/if}
+
+      {#if isValid && isAvailable}
+        <button class="btn btn-success">Confirm username @{username} </button>
+      {/if}
+    </div>
   </form>
 </AuthCheck>
