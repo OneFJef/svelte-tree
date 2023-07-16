@@ -1,9 +1,6 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
   import { auth, user } from "$lib/firebase";
   import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-
-  export let data: PageData;
 
   async function signInWithGoogle() {
     const provider = new GoogleAuthProvider();

@@ -1,9 +1,6 @@
 <script lang="ts">
-  import type { LayoutData } from "./$types";
   import { page } from "$app/stores";
   import AnimatedRoute from "$lib/compnents/AnimatedRoute.svelte";
-
-  export let data: LayoutData;
 </script>
 
 <nav class="flex justify-center my-6">
