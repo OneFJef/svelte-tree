@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import AnimatedRoute from "$lib/compnents/AnimatedRoute.svelte";
+  import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
+  import AuthCheck from "$lib/components/AuthCheck.svelte";
 </script>
 
 <nav class="flex justify-center my-6">
@@ -9,14 +10,15 @@
     <a
       href="/login/username"
       class="step"
-      class:step-primary={$page.route.id?.match(/username|photo/g)}
-      >Choose Username</a
-    >
+      class:step-primary={$page.route.id?.match(/username|photo/g)}>
+      Choose Username
+    </a>
     <a
       href="/login/photo"
       class="step"
-      class:step-primary={$page.route.id?.includes("photo")}>Upload Photo</a
-    >
+      class:step-primary={$page.route.id?.includes("photo")}>
+      Upload Photo
+    </a>
   </ul>
 </nav>
 
