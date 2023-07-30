@@ -15,7 +15,7 @@ try {
       privateKey: FB_PRIVATE_KEY,
     }),
   });
-} catch (err) {
+} catch (err: any) {
   if (!/already exists/u.test(err.message)) {
     console.error("Firebase Admin Error: ", err.stack);
   }
